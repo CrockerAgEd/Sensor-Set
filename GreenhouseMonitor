@@ -1,1 +1,9 @@
-
+import time
+import board
+import busio
+import adafruit_dht
+from Adafruit_IO import Client, Feed, RequestError
+ADAFRUIT_IO_KEY = 'YOUR_AIO_KEY'
+ADAFRUIT_IO_USERNAME = 'YOUR_AIO_USERNAME'
+aio = Client(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
+i2c = busio.I2C(board.SCL, board.SDA, frequency=100000)
