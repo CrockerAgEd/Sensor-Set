@@ -7,3 +7,13 @@ ADAFRUIT_IO_KEY = 'c907dc9fee4f4a978b830c2e126345b6'
 ADAFRUIT_IO_USERNAME = 'Mschroer'
 aio = Client(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
 i2c = busio.I2C(board.SCL, board.SDA, frequency=100000)
+
+
+
+
+
+
+
+
+
+
