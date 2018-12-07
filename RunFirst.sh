@@ -9,4 +9,4 @@ sudo python3 setup.py install
 cd ~
 cd Adafruit_Python_DHT
 cd examples
-python AdafruitDHT.py 11 17
+python AdafruitDHT.py 11 20
