@@ -43,8 +43,8 @@ ADAFRUIT_IO_USERNAME = 'Mschroer'
 aio = Client(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
 
 # Set up Adafruit IO Feeds.
-temperature_feed = aio.feeds('Temp')
-humidity_feed = aio.feeds('Humidity')
+temperature_feed = aio.feeds('temp')
+humidity_feed = aio.feeds('humidity')
 
 # Set up DHT11 Sensor.
 dht11_sensor = Adafruit_DHT.DHT11
@@ -62,4 +62,5 @@ while True:
         print('Failed to get DHT11 Reading, trying again in ', DHT_READ_TIMEOUT, 'seconds')
     # Timeout to avoid flooding Adafruit IO
     time.sleep(DHT_READ_TIMEOUT)
+
 
