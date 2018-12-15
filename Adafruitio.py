@@ -52,9 +52,10 @@ dht11_sensor = Adafruit_DHT.DHT11
 while True:
     humidity, temperature = Adafruit_DHT.read_retry(dht11_sensor, DHT_DATA_PIN)
     if humidity is not None and temperature is not None:
-        print('Temp={0:0.1f}*C Humidity={1:0.1f}%'.format(temperature, humidity))
+        print('Temp={0:0.1f}*F Humidity={1:0.1f}%'.format((temperature)*1.8+32, humidity))
         # Send humidity and temperature feeds to Adafruit IO
-        temperature = '%.2f'%(temperature)
+        
+        temperature = '%.2f'%((temperature)*1.8+32)
         humidity = '%.2f'%(humidity)
         aio.send(temperature_feed.key, str(temperature))
         aio.send(humidity_feed.key, str(humidity))
@@ -62,5 +63,6 @@ while True:
         print('Failed to get DHT11 Reading, trying again in ', DHT_READ_TIMEOUT, 'seconds')
     # Timeout to avoid flooding Adafruit IO
     time.sleep(DHT_READ_TIMEOUT)
+
 
 
