@@ -43,7 +43,7 @@ def read_temp_raw():
     f4.close()
     return lines
 
-def read_temp():
+def read_temp1():
     lines1 = read_temp_raw1()
     while lines1[0].strip()[-3:] != 'YES':
         time1.sleep(0.2)
@@ -55,7 +55,7 @@ def read_temp():
         temp_f1 = temp_c1 * 9.0 / 5.0 + 32.0
         return temp_c1, temp_f1
 
-def read_temp():
+def read_temp2():
     lines2 = read_temp_raw2()
     while lines2[0].strip()[-3:] != 'YES':
         time2.sleep(0.2)
@@ -67,7 +67,7 @@ def read_temp():
         temp_f2 = temp_c2 * 9.0 / 5.0 + 32.0
         return temp_c2, temp_f2
 
-def read_temp():
+def read_temp3():
     lines3 = read_temp_raw3()
     while lines3[0].strip()[-3:] != 'YES':
         time3.sleep(0.2)
@@ -79,7 +79,7 @@ def read_temp():
         temp_f3 = temp_c3 * 9.0 / 5.0 + 32.0
         return temp_c3, temp_f3
 
-def read_temp():
+def read_temp4():
     lines4 = read_temp_raw4()
     while lines4[0].strip()[-3:] != 'YES':
         time4.sleep(0.2)
@@ -91,6 +91,8 @@ def read_temp():
         temp_f4 = temp_c4 * 9.0 / 5.0 + 32.0
         return temp_c4, temp_f4
 	
+	
+	
 while True:
-	print(read_temp())	
+	print("sensor 1"read_temp1()"sensor 2"read_temp2()"sensor 3"read_temp3()"sensor 4"read_temp4())	
 	time.sleep(1)
