@@ -3,11 +3,8 @@
 ==================================
 Example of sending analog sensor
 values to an Adafruit IO feed.
-
 Author(s): Brent Rubell
-
 Tutorial Link: Tutorial Link: https://learn.adafruit.com/adafruit-io-basics-temperature-and-humidity
-
 Dependencies:
     - Adafruit IO Python Client
         (https://github.com/adafruit/io-client-python)
@@ -24,6 +21,8 @@ os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
 base_dir = '/sys/bus/w1/devices/'
+
+time.sleep(0)
 
 device_folder1 = glob.glob(base_dir + '28-01131f69*')[0]
 device_file1 = device_folder1 + '/w1_slave'
@@ -145,20 +144,22 @@ def read_temp4():
 while True:
     humidity, temperature = Adafruit_DHT.read_retry(dht11_sensor, DHT_DATA_PIN)
     if humidity is not None and temperature is not None:
-        print('Temp={0:0.1f}*F Humidity={1:0.1f}%'.format((temperature)*1.8+32, humidity))
+        print("dhttemp = ",temperature*1.8+32,"dhthumidity = ",humidity, "probe1 =",(read_temp1()),"probe2 =",(read_temp2()),"probe3 =",(read_temp4()),"probe4 =",(read_temp4()),)
         # Send humidity and temperature feeds to Adafruit IO
-        
+    
         temperature = '%.2f'%((temperature)*1.8+32)
         humidity = '%.2f'%(humidity)
+
+
         aio.send(temperature_feed.key, str(temperature))
         aio.send(humidity_feed.key, str(humidity))
         aio.send(aio.feeds('soil-1-temp').key, str(read_temp1()))
         aio.send(aio.feeds('soil-2-temp').key, str(read_temp2()))
         aio.send(aio.feeds('soil-3-temp').key, str(read_temp3()))
         aio.send(aio.feeds('soil-4-temp').key, str(read_temp4()))
+        time.sleep(0)
         
     else:
         print('Failed to get DHT11 Reading, trying again in ', DHT_READ_TIMEOUT, 'seconds')
     # Timeout to avoid flooding Adafruit IO
     time.sleep(DHT_READ_TIMEOUT)
-
